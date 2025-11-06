@@ -616,6 +616,7 @@
 
 package com.example.offlinedocumenthubserver;
 
+import com.example.offlinedocumenthubserver.dto.Message;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -691,6 +692,12 @@ public class RESTServer {
         app.post("/api/users", RESTServer::createUser);
         app.put("/api/users/{id}", RESTServer::updateUser);
         app.delete("/api/users/{id}", RESTServer::deleteUser);
+
+        // Messages routes
+        app.get("/api/messages/conversations", RESTServer::getConversations);
+        app.get("/api/messages/{userId}", RESTServer::getMessages);
+        app.post("/api/messages", RESTServer::sendMessage);
+        app.post("/api/messages/{userId}/read", RESTServer::markMessagesAsRead);
 
         // Activity logs (admin only)
         app.get("/api/activity-logs", RESTServer::getActivityLogs);
@@ -1242,17 +1249,20 @@ public class RESTServer {
 
     // ============ USER MANAGEMENT ENDPOINTS ============
     // In getAllUsers method - FIXED
+    // In RESTServer.java - update getAllUsers method
     private static void getAllUsers(Context ctx) {
-        UserSession session = requireAdmin(ctx);
+        UserSession session = requireAuth(ctx);
         if (session == null) return;
 
         try {
             List<User> users = new ArrayList<>();
-            String sql = "SELECT user_id, username, full_name, role FROM users ORDER BY user_id";
+            String sql = "SELECT user_id, username, full_name, role FROM users WHERE user_id != ? ORDER BY full_name, username";
 
             try (Connection conn = DatabaseConnection.getConnection();
-                 PreparedStatement stmt = conn.prepareStatement(sql);
-                 ResultSet rs = stmt.executeQuery()) {
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setInt(1, session.userId);
+                ResultSet rs = stmt.executeQuery();
 
                 while (rs.next()) {
                     User user = new User(
@@ -1466,6 +1476,184 @@ public class RESTServer {
         } catch (Exception e) {
             logActivity(session.userId, "USER_DELETE_ERROR", "User delete error: " + e.getMessage());
             ctx.json(createErrorResponse("User delete error: " + e.getMessage()));
+        }
+    }
+
+
+
+    // Add these message endpoint implementations
+// In RESTServer.java - update message endpoints
+    private static void getConversations(Context ctx) {
+        UserSession session = requireAuth(ctx);
+        if (session == null) return;
+
+        try {
+            List<com.example.offlinedocumenthubserver.dto.Message> conversations = new ArrayList<>();
+
+            // Get distinct conversations (last message with each user)
+            String sql = "SELECT m1.*, " +
+                    "sender.username as sender_name, receiver.username as receiver_name " +
+                    "FROM messages m1 " +
+                    "INNER JOIN users sender ON m1.sender_id = sender.user_id " +
+                    "INNER JOIN users receiver ON m1.receiver_id = receiver.user_id " +
+                    "WHERE m1.sent_date = ( " +
+                    "    SELECT MAX(m2.sent_date) " +
+                    "    FROM messages m2 " +
+                    "    WHERE (m2.sender_id = m1.sender_id AND m2.receiver_id = m1.receiver_id) " +
+                    "       OR (m2.sender_id = m1.receiver_id AND m2.receiver_id = m1.sender_id) " +
+                    ") " +
+                    "AND (m1.sender_id = ? OR m1.receiver_id = ?) " +
+                    "ORDER BY m1.sent_date DESC";
+
+            try (Connection conn = DatabaseConnection.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setInt(1, session.userId);
+                stmt.setInt(2, session.userId);
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    com.example.offlinedocumenthubserver.dto.Message message = new com.example.offlinedocumenthubserver.dto.Message(
+                            rs.getInt("message_id"),
+                            rs.getInt("sender_id"),
+                            rs.getInt("receiver_id"),
+                            rs.getString("message_text"),
+                            rs.getTimestamp("sent_date").toLocalDateTime(),
+                            rs.getBoolean("is_read")
+                    );
+                    message.setSenderName(rs.getString("sender_name"));
+                    message.setReceiverName(rs.getString("receiver_name"));
+                    conversations.add(message);
+                }
+            }
+
+            // Return the array directly, not wrapped in a response object
+            ctx.json(objectMapper.writeValueAsString(conversations));
+
+        } catch (Exception e) {
+            System.err.println("Error in getConversations: " + e.getMessage());
+            e.printStackTrace();
+            // Return empty array on error
+            ctx.json("[]");
+        }
+    }
+
+    private static void getMessages(Context ctx) {
+        UserSession session = requireAuth(ctx);
+        if (session == null) return;
+
+        try {
+            String otherUserIdParam = ctx.pathParam("userId");
+            int otherUserId = Integer.parseInt(otherUserIdParam);
+
+            List<com.example.offlinedocumenthubserver.dto.Message> messages = new ArrayList<>();
+            String sql = "SELECT m.*, " +
+                    "sender.username as sender_name, receiver.username as receiver_name " +
+                    "FROM messages m " +
+                    "INNER JOIN users sender ON m.sender_id = sender.user_id " +
+                    "INNER JOIN users receiver ON m.receiver_id = receiver.user_id " +
+                    "WHERE (m.sender_id = ? AND m.receiver_id = ?) " +
+                    "   OR (m.sender_id = ? AND m.receiver_id = ?) " +
+                    "ORDER BY m.sent_date ASC";
+
+            try (Connection conn = DatabaseConnection.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setInt(1, session.userId);
+                stmt.setInt(2, otherUserId);
+                stmt.setInt(3, otherUserId);
+                stmt.setInt(4, session.userId);
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    com.example.offlinedocumenthubserver.dto.Message message = new com.example.offlinedocumenthubserver.dto.Message(
+                            rs.getInt("message_id"),
+                            rs.getInt("sender_id"),
+                            rs.getInt("receiver_id"),
+                            rs.getString("message_text"),
+                            rs.getTimestamp("sent_date").toLocalDateTime(),
+                            rs.getBoolean("is_read")
+                    );
+                    message.setSenderName(rs.getString("sender_name"));
+                    message.setReceiverName(rs.getString("receiver_name"));
+                    messages.add(message);
+                }
+            }
+
+            // Return the array directly, not wrapped in a response object
+            ctx.json(objectMapper.writeValueAsString(messages));
+
+        } catch (Exception e) {
+            System.err.println("Error in getMessages: " + e.getMessage());
+            e.printStackTrace();
+            // Return empty array on error
+            ctx.json("[]");
+        }
+    }
+
+    private static void sendMessage(Context ctx) {
+        UserSession session = requireAuth(ctx);
+        if (session == null) return;
+
+        try {
+            Map<String, Object> body = ctx.bodyAsClass(Map.class);
+            int receiverId = ((Number) body.get("receiverId")).intValue();
+            String messageText = (String) body.get("messageText");
+
+            if (messageText == null || messageText.trim().isEmpty()) {
+                ctx.json(createErrorResponse("Message text is required"));
+                return;
+            }
+
+            String sql = "INSERT INTO messages (sender_id, receiver_id, message_text, sent_date, is_read) " +
+                    "VALUES (?, ?, ?, ?, ?)";
+
+            try (Connection conn = DatabaseConnection.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setInt(1, session.userId);
+                stmt.setInt(2, receiverId);
+                stmt.setString(3, messageText.trim());
+                stmt.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+                stmt.setBoolean(5, false);
+
+                int affectedRows = stmt.executeUpdate();
+                if (affectedRows > 0) {
+                    logActivity(session.userId, "SEND_MESSAGE", "Sent message to user ID: " + receiverId);
+                    ctx.json(createSuccessResponse("Message sent successfully"));
+                } else {
+                    ctx.json(createErrorResponse("Failed to send message"));
+                }
+            }
+        } catch (Exception e) {
+            logActivity(session.userId, "SEND_MESSAGE_ERROR", "Message send error: " + e.getMessage());
+            ctx.json(createErrorResponse("Failed to send message: " + e.getMessage()));
+        }
+    }
+
+    private static void markMessagesAsRead(Context ctx) {
+        UserSession session = requireAuth(ctx);
+        if (session == null) return;
+
+        try {
+            String otherUserIdParam = ctx.pathParam("userId");
+            int otherUserId = Integer.parseInt(otherUserIdParam);
+
+            String sql = "UPDATE messages SET is_read = true " +
+                    "WHERE sender_id = ? AND receiver_id = ? AND is_read = false";
+
+            try (Connection conn = DatabaseConnection.getConnection();
+                 PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+                stmt.setInt(1, otherUserId);
+                stmt.setInt(2, session.userId);
+                stmt.executeUpdate();
+            }
+
+            ctx.json(createSuccessResponse("Messages marked as read"));
+        } catch (Exception e) {
+            logActivity(session.userId, "MARK_READ_ERROR", "Mark read error: " + e.getMessage());
+            ctx.json(createErrorResponse("Failed to mark messages as read: " + e.getMessage()));
         }
     }
 

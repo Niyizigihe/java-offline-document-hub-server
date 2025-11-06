@@ -1,0 +1,6 @@
+module-info.class
+com\example\offlinedocumenthubserver\Document.class
+com\example\offlinedocumenthubserver\DatabaseConnection.class
+com\example\offlinedocumenthubserver\ActivityLog.class
+com\example\offlinedocumenthubserver\CloudBackupManager.class
+com\example\offlinedocumenthubserver\FileManager.class

@@ -14,7 +14,7 @@ module com.example.offlinedocumenthubserver {
     requires com.google.api.services.drive;
     requires com.google.auth.oauth2;
 
-
     opens com.example.offlinedocumenthubserver to javafx.fxml;
+    exports com.example.offlinedocumenthubserver.dto to com.fasterxml.jackson.databind;
     exports com.example.offlinedocumenthubserver;
 }
