@@ -1,0 +1,13 @@
+Installation instructions:
+-----------------------
+
+  1. Run the installation of Adobe XD (file autoplay.exe), and normally continue
+     keep it up to a successful end.
+
+  2. After closing the program installer window, in automatic mode
+     the healing mechanism starts. Just wait for the message to appear
+     "Cracking complete. Enjoy!".
+     ATTENTION: If the message does not appear for a long time, open the "Dispatcher
+     tasks" (Task Manager) and end the "Adobe IPC Broker" process.
+
+  3. Enjoy the opportunity to use the product without access to the network!
