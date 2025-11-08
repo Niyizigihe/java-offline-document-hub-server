@@ -645,7 +645,8 @@ public class RESTServer {
 
     // Session management - store active sessions
     private static final Map<String, UserSession> activeSessions = new ConcurrentHashMap<>();
-    private static final long SESSION_TIMEOUT = 24 * 60 * 60 * 1000; // 24 hours
+//    private static final long SESSION_TIMEOUT = 24 * 60 * 60 * 1000; // 24 hours
+    private static final long SESSION_TIMEOUT = 10 * 60 * 1000; // 10 minutes in milliseconds
 
     static {
         // Configure ObjectMapper for Java 8 dates

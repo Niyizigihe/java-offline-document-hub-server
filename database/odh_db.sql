@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 06, 2025 at 07:24 PM
+-- Generation Time: Nov 08, 2025 at 08:02 PM
 -- Server version: 10.11.14-MariaDB
 -- PHP Version: 8.2.12
 
@@ -111,7 +111,98 @@ INSERT INTO `activity_logs` (`log_id`, `user_id`, `action_type`, `action_details
 (76, 6, 'DOWNLOAD', 'Downloaded document: project[1] (AutoRecovered)', '2025-11-06 16:01:40'),
 (77, 6, 'LOGOUT', 'User logged out', '2025-11-06 16:02:47'),
 (78, 2, 'LOGIN', 'User logged in successfully', '2025-11-06 16:02:59'),
-(79, 2, 'LOGOUT', 'User logged out', '2025-11-06 17:53:04');
+(79, 2, 'LOGOUT', 'User logged out', '2025-11-06 17:53:04'),
+(80, 2, 'LOGIN', 'User logged in successfully', '2025-11-06 20:02:35'),
+(81, 2, 'LOGIN', 'User logged in successfully', '2025-11-06 20:15:46'),
+(82, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:15:55'),
+(83, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:15:55'),
+(84, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:15:57'),
+(85, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:15:59'),
+(86, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:01'),
+(87, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:03'),
+(88, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:05'),
+(89, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:07'),
+(90, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:09'),
+(91, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:11'),
+(92, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:13'),
+(93, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:15'),
+(94, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:17'),
+(95, 2, 'CONVERSATIONS_LOAD_ERROR', 'Failed to load conversations: Unknown column \'m2.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:19'),
+(96, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:20'),
+(97, 2, 'MARK_READ_ERROR', 'Mark read error: Unknown column \'receiver_id\' in \'WHERE\'', '2025-11-06 20:16:20'),
+(98, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:21'),
+(99, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:23'),
+(100, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:25'),
+(101, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:27'),
+(102, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:29'),
+(103, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:31'),
+(104, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:33'),
+(105, 2, 'SEND_MESSAGE_ERROR', 'Message send error: Unknown column \'receiver_id\' in \'INSERT INTO\'', '2025-11-06 20:16:34'),
+(106, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:35'),
+(107, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:37'),
+(108, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:39'),
+(109, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:41'),
+(110, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:43'),
+(111, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:45'),
+(112, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:47'),
+(113, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:49'),
+(114, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:51'),
+(115, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:53'),
+(116, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:55'),
+(117, 2, 'MARK_READ_ERROR', 'Mark read error: Unknown column \'receiver_id\' in \'WHERE\'', '2025-11-06 20:16:55'),
+(118, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:55'),
+(119, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:57'),
+(120, 2, 'SEND_MESSAGE_ERROR', 'Message send error: Unknown column \'receiver_id\' in \'INSERT INTO\'', '2025-11-06 20:16:58'),
+(121, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:16:59'),
+(122, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:01'),
+(123, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:03'),
+(124, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:05'),
+(125, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:07'),
+(126, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:09'),
+(127, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:11'),
+(128, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:13'),
+(129, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:15'),
+(130, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:17'),
+(131, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:19'),
+(132, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:21'),
+(133, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:23'),
+(134, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:25'),
+(135, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:27'),
+(136, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:29'),
+(137, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:31'),
+(138, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:33'),
+(139, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:35'),
+(140, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:37'),
+(141, 2, 'MESSAGES_LOAD_ERROR', 'Failed to load messages: Unknown column \'m.receiver_id\' in \'WHERE\'', '2025-11-06 20:17:39'),
+(142, 2, 'LOGIN', 'User logged in successfully', '2025-11-06 20:19:54'),
+(143, 2, 'SEND_MESSAGE', 'Sent message to user ID: 6', '2025-11-06 20:20:21'),
+(144, 2, 'LOGIN', 'User logged in successfully', '2025-11-06 20:27:23'),
+(145, 2, 'SEND_MESSAGE', 'Sent message to user ID: 6', '2025-11-06 20:27:48'),
+(146, 2, 'SEND_MESSAGE', 'Sent message to user ID: 6', '2025-11-06 20:28:12'),
+(147, 2, 'SEND_MESSAGE', 'Sent message to user ID: 4', '2025-11-06 20:28:38'),
+(148, 2, 'LOGOUT', 'User logged out', '2025-11-06 20:28:55'),
+(149, 6, 'LOGIN', 'User logged in successfully', '2025-11-06 20:29:07'),
+(150, 6, 'SEND_MESSAGE', 'Sent message to user ID: 2', '2025-11-06 20:29:27'),
+(151, 2, 'LOGIN', 'User logged in successfully', '2025-11-06 20:32:55'),
+(152, 2, 'SEND_MESSAGE', 'Sent message to user ID: 6', '2025-11-06 20:34:03'),
+(153, 2, 'SEND_MESSAGE', 'Sent message to user ID: 3', '2025-11-06 20:34:39'),
+(154, 2, 'SEND_MESSAGE', 'Sent message to user ID: 6', '2025-11-06 20:34:54'),
+(155, 2, 'SEND_MESSAGE', 'Sent message to user ID: 6', '2025-11-06 20:34:56'),
+(156, 2, 'LOGIN', 'User logged in successfully', '2025-11-06 20:55:38'),
+(157, 2, 'LOGIN', 'User logged in successfully', '2025-11-08 17:44:40'),
+(158, 2, 'LOGIN', 'User logged in successfully', '2025-11-08 17:58:42'),
+(159, 2, 'LOGIN', 'User logged in successfully', '2025-11-08 18:01:47'),
+(160, 2, 'LOGIN', 'User logged in successfully', '2025-11-08 18:09:47'),
+(161, 2, 'LOGIN', 'User logged in successfully', '2025-11-08 18:21:46'),
+(162, 2, 'LOGIN', 'User logged in successfully', '2025-11-08 18:28:42'),
+(163, 2, 'LOGIN', 'User logged in successfully', '2025-11-08 18:30:23'),
+(164, 2, 'LOGIN', 'User logged in successfully', '2025-11-08 18:34:19'),
+(165, 2, 'LOGIN', 'User logged in successfully', '2025-11-08 18:41:20'),
+(166, 2, 'UPLOAD', 'Uploaded document: TrM_SWDDT501_DevOps Techniques Application', '2025-11-08 18:42:15'),
+(167, 2, 'USER_UPDATE', 'Updated user ID: 4', '2025-11-08 18:43:03'),
+(168, 2, 'USER_UPDATE', 'Updated user ID: 4', '2025-11-08 18:45:06'),
+(169, 2, 'LOGOUT', 'User logged out', '2025-11-08 18:51:04'),
+(170, 2, 'LOGIN', 'User logged in successfully', '2025-11-08 18:54:00');
 
 -- --------------------------------------------------------
 
@@ -138,7 +229,8 @@ INSERT INTO `documents` (`doc_id`, `title`, `file_path`, `uploaded_by`, `upload_
 (2, 'TestMySpeech', 'shared_documents\\TestMySpeech_20251105_212527.docx', 'niyo', '2025-11-05', 2, 26232, '2025-11-05 19:25:27'),
 (3, 'Appointment', 'shared_documents\\Appointment_20251105_214933.pdf', 'niyo', '2025-11-05', 2, 94702, '2025-11-05 19:49:33'),
 (5, 'Readme', 'shared_documents\\Readme_20251105_223115.txt', 'kapo', '2025-11-05', 6, 586, '2025-11-05 20:31:15'),
-(6, 'project[1] (AutoRecovered)', 'shared_documents\\project_1___AutoRecovered__20251106_180038.docx', 'niyo', '2025-11-06', 2, 17274, '2025-11-06 16:00:38');
+(6, 'project[1] (AutoRecovered)', 'shared_documents\\project_1___AutoRecovered__20251106_180038.docx', 'niyo', '2025-11-06', 2, 17274, '2025-11-06 16:00:38'),
+(7, 'TrM_SWDDT501_DevOps Techniques Application', 'shared_documents\\TrM_SWDDT501_DevOps_Techniques_Application_20251108_204215.pdf', 'HARINDINTWARI Etienne', '2025-11-08', 2, 905257, '2025-11-08 18:42:15');
 
 -- --------------------------------------------------------
 
@@ -149,10 +241,26 @@ INSERT INTO `documents` (`doc_id`, `title`, `file_path`, `uploaded_by`, `upload_
 CREATE TABLE `messages` (
   `message_id` int(11) NOT NULL,
   `sender_id` int(11) NOT NULL,
-  `message_text` text DEFAULT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `message_text` text NOT NULL,
   `sent_date` timestamp NULL DEFAULT current_timestamp(),
   `is_read` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`message_id`, `sender_id`, `receiver_id`, `message_text`, `sent_date`, `is_read`) VALUES
+(1, 2, 6, 'hello', '2025-11-06 20:20:21', 1),
+(2, 2, 6, 'hello wee', '2025-11-06 20:27:47', 1),
+(3, 2, 6, 'murahoooo', '2025-11-06 20:28:12', 1),
+(4, 2, 4, 'bite wee', '2025-11-06 20:28:38', 0),
+(5, 6, 2, 'kk', '2025-11-06 20:29:27', 1),
+(6, 2, 6, 'umeze gute? byakunze?', '2025-11-06 20:34:03', 0),
+(7, 2, 3, 'salama wowe', '2025-11-06 20:34:39', 0),
+(8, 2, 6, 'ijuhygf', '2025-11-06 20:34:54', 0),
+(9, 2, 6, 'hgfgcd', '2025-11-06 20:34:56', 0);
 
 -- --------------------------------------------------------
 
@@ -174,10 +282,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `username`, `full_name`, `password_hash`, `role`, `created_at`) VALUES
-(2, 'niyo', 'niyo', '3381777', 'admin', '2025-11-05 15:36:49'),
-(3, 'niyoi', 'niyo', '3381777', 'admin', '2025-11-05 15:36:49'),
-(4, 'uytr', 'uytr', '119991', 'student', '2025-11-05 19:32:43'),
-(6, 'kapo', 'kapo', '3284437', 'student', '2025-11-05 20:29:54');
+(2, 'niyo', 'HARINDINTWARI Etienne', '3381777', 'admin', '2025-11-05 15:36:49'),
+(3, 'jado', 'Iradukunda', '3381777', 'admin', '2025-11-05 15:36:49'),
+(4, 'betty', 'Akimpaye Beatrice', '119991', 'student', '2025-11-05 19:32:43'),
+(6, 'fre', 'Ntawe Frederic', '3284437', 'student', '2025-11-05 20:29:54');
 
 --
 -- Indexes for dumped tables
@@ -204,7 +312,8 @@ ALTER TABLE `documents`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`message_id`),
-  ADD KEY `idx_messages_sender_id` (`sender_id`),
+  ADD KEY `receiver_id` (`receiver_id`),
+  ADD KEY `idx_messages_sender_receiver` (`sender_id`,`receiver_id`),
   ADD KEY `idx_messages_sent_date` (`sent_date`);
 
 --
@@ -222,19 +331,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=171;
 
 --
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -262,7 +371,8 @@ ALTER TABLE `documents`
 -- Constraints for table `messages`
 --
 ALTER TABLE `messages`
-  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `messages_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `messages_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
