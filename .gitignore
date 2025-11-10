@@ -1,0 +1,30 @@
+# Google Cloud Credentials
+target/classes/*.json
+tokens/
+credentials/
+*.json
+
+# Build files
+target/
+build/
+*.class
+*.jar
+*.war
+
+# IDE files
+# .idea/
+# *.iml
+# *.iws
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+EOF
