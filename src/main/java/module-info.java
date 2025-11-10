@@ -13,8 +13,10 @@ module com.example.offlinedocumenthubserver {
     requires com.google.api.client.json.gson;
     requires com.google.api.services.drive;
     requires com.google.auth.oauth2;
+    requires com.google.gson;
 
-    opens com.example.offlinedocumenthubserver to javafx.fxml;
+
+    opens com.example.offlinedocumenthubserver to javafx.fxml, com.google.gson;
     exports com.example.offlinedocumenthubserver.dto to com.fasterxml.jackson.databind;
     exports com.example.offlinedocumenthubserver;
 }

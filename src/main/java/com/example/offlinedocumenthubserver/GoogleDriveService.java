@@ -25,12 +25,13 @@ import java.util.zip.ZipOutputStream;
 public class GoogleDriveService {
     private static final String APPLICATION_NAME = "Offline Document Hub";
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-    private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
+    private static final String CREDENTIALS_FILE_PATH = "/odh-drive-api-8de0823811a2.json";
     private static final String PARENT_BACKUP_FOLDER_NAME = "OfflineDocumentHub_Backups";
 
     private Drive driveService;
     private String parentFolderId;
 
+    // 👇 THIS IS THE CONSTRUCTOR YOU DELETED. IT IS NOW RESTORED.
     public GoogleDriveService() {
         System.out.println("🔧 [INIT] Starting GoogleDriveService initialization...");
 
@@ -41,6 +42,7 @@ public class GoogleDriveService {
 
             if (credentialsStream == null) {
                 System.err.println("❌ [INIT] Credentials file NOT FOUND at: " + CREDENTIALS_FILE_PATH);
+                System.out.println("❌ [INIT-DEBUG] Credentials file NOT FOUND at: " + CREDENTIALS_FILE_PATH);
                 throw new FileNotFoundException("Credentials file not found: " + CREDENTIALS_FILE_PATH);
             }
             System.out.println("✅ [INIT] Credentials file found!");
@@ -52,11 +54,13 @@ public class GoogleDriveService {
 
             // Create credentials - simplified approach
             System.out.println("🔧 [INIT] Creating GoogleCredential from service account...");
+            System.out.println("🔧 [INIT] ---> Attempting GoogleCredential.fromStream()...");
 
             GoogleCredential credential = GoogleCredential
                     .fromStream(credentialsStream, HTTP_TRANSPORT, JSON_FACTORY)
                     .createScoped(Collections.singleton(DriveScopes.DRIVE));
 
+            System.out.println("🔧 [INIT] ---> GoogleCredential.fromStream() SUCCEEDED.");
             System.out.println("✅ [INIT] GoogleCredential created successfully");
 
             if (credential.getServiceAccountId() != null) {
@@ -81,35 +85,43 @@ public class GoogleDriveService {
                 System.out.println("✅ [INIT] API connection test successful!");
             } catch (Exception e) {
                 System.err.println("⚠️ [INIT] API test warning: " + e.getMessage());
-                System.err.println("⚠️ [INIT] This might be due to:");
-                System.err.println("   1. Google Drive API not enabled in your project");
-                System.err.println("   2. Service account needs to be granted access");
-                System.err.println("   3. Check: https://console.cloud.google.com/apis/library/drive.googleapis.com");
+                System.out.println("⚠️ [INIT-DEBUG] API test warning: " + e.getMessage());
             }
 
             System.out.println("✅ [INIT] Ready to perform backups!");
 
         } catch (FileNotFoundException e) {
             System.err.println("❌ [INIT] File error: " + e.getMessage());
+            System.out.println("❌ [INIT-DEBUG] CAUGHT FileNotFoundException: " + e.getMessage());
             e.printStackTrace();
             driveService = null;
         } catch (IOException e) {
             System.err.println("❌ [INIT] IO error: " + e.getMessage());
-            System.err.println("❌ [INIT] This could mean:");
-            System.err.println("   - Invalid JSON format in credentials.json");
-            System.err.println("   - Credentials file is corrupted");
-            System.err.println("   - Network connectivity issues");
+            System.out.println("❌ [INIT-DEBUG] CAUGHT IOException. This is a JSON PARSING error or network issue.");
+            System.out.println("❌ [INIT-DEBUG] Error Type: " + e.getClass().getName());
+            System.out.println("❌ [INIT-DEBUG] Error Message: " + e.getMessage());
             e.printStackTrace();
             driveService = null;
         } catch (GeneralSecurityException e) {
             System.err.println("❌ [INIT] Security error: " + e.getMessage());
-            System.err.println("❌ [INIT] This is often due to SSL/TLS issues");
+            System.out.println("❌ [INIT-DEBUG] CAUGHT GeneralSecurityException. This is often a CLOCK SKEW or transport error.");
+            System.out.println("❌ [INIT-DEBUG] Error Message: " + e.getMessage());
             e.printStackTrace();
             driveService = null;
         } catch (Exception e) {
             System.err.println("❌ [INIT] Unexpected error: " + e.getClass().getName());
-            System.err.println("❌ [INIT] Message: " + e.getMessage());
+            System.out.println("❌ [INIT-DEBUG] CAUGHT UNEXPECTED Exception.");
+            System.out.println("❌ [INIT-DEBUG] Error Type: " + e.getClass().getName());
+            System.out.println("❌ [INIT-DEBUG] Error Message: " + e.getMessage());
             e.printStackTrace();
+            driveService = null;
+        } catch (Throwable t) {
+            // NEW CATCH-ALL BLOCK for Errors (like OutOfMemoryError, etc.)
+            System.err.println("❌ [INIT] CRITICAL ERROR: " + t.getClass().getName());
+            System.out.println("❌ [INIT-DEBUG] CAUGHT CRITICAL THROWABLE. This is a serious error.");
+            System.out.println("❌ [INIT-DEBUG] Error Type: " + t.getClass().getName());
+            System.out.println("❌ [INIT-DEBUG] Error Message: " + t.getMessage());
+            t.printStackTrace();
             driveService = null;
         }
 
